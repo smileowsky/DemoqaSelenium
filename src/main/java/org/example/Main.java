@@ -6,15 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        String chromeDriver = "/home/smileowsky/Sənədlər/chromedriver-linux64/chromedriver";
-        System.setProperty("webdriver.chrome.driver", chromeDriver);
-
-        ChromeOptions optionChrome = new ChromeOptions();
-        optionChrome.addArguments("--start-maximized");
-
-        //Create webdriver object and open google.com
-        WebDriver driver = new ChromeDriver(optionChrome);
-        driver.get("https://demoqa.com/");
+        WebDriver driver = Drivers.start();
+        driver.get(CongigURL.BASE_URL);
 
         //Enter search keyword
         //driver.findElement(By.id("APjFqb")).sendKeys("demoqa");
@@ -32,7 +25,7 @@ public class Main {
         //driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div/div[1]/div/div[1]")).click();
 
         //Click Text Box
-        driver.findElement(By.id("item-0")).click();
+        driver.findElement(By.id(TextBox.clickTextBox)).click();
 
         //Fill up fields
         driver.findElement(By.id("userName")).sendKeys("Khayal Gulush");
@@ -57,18 +50,24 @@ public class Main {
         jse.executeScript("window.scrollBy(0,400)");
 
         //Click ChecBox
-        driver.findElement(By.id("item-1")).click();
+        driver.findElement(By.id(CheckBox.checkboxButton)).click();
 
         //Click Plus
-        driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/div/div/button[1]")).click();
+        driver.findElement(By.xpath(CheckBox.checkboxPlusIcon)).click();
 
         //Click checkbox
-        driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/div[1]/ol/li/span/label/span[1]")).click();
+        driver.findElement(By.xpath(CheckBox.checkboxClick)).click();
+
+        //Wait
+        Thread.sleep(4000);
 
         //Click Radio Button
         driver.findElement(By.id("item-2")).click();
         driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/div[2]")).click();
         driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]")).click();
+
+        //Wait
+        Thread.sleep(4000);
 
         //Click Web Tables
         driver.findElement(By.id("item-3")).click();
@@ -79,7 +78,7 @@ public class Main {
         firstName_input.clear();
         driver.findElement(By.id("firstName")).sendKeys("Khayal");
 
-        //Last Name input
+        //Last Name inputqqq
         WebElement lastName_input = driver.findElement(By.id("lastName"));
         lastName_input.clear();
         driver.findElement(By.id("lastName")).sendKeys("Gulushov");
@@ -103,11 +102,12 @@ public class Main {
         WebElement department_input = driver.findElement(By.id("department"));
         department_input.clear();
         driver.findElement(By.id("department")).sendKeys("Testing");
+        driver.findElement(By.id("submit")).click();
 
         //Wait
-        Thread.sleep(10000);
+        //Thread.sleep(10000);
 
         //Close
-        driver.quit();
+        //driver.quit();
     }
 }
